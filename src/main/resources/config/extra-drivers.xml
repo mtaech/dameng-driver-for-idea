@@ -10,11 +10,17 @@
     <artifact name="dameng.dm.jdbc" use="true" rolling="true"/>
     <option name="auto-sync" value="true"/>
     <keep-alive-query>SELECT 1 FROM DUAL</keep-alive-query>
+    <connection-bounds bound-to="schema">
+      <rewrite-parameter name="database" in-url="true"/>
+    </connection-bounds>
   </driver>
   <driver id="dameng.dm7" name="DM7 (达梦数据库 7)" icon="/icons/dm.svg" dialect="GenericSQL" driver-class="dm.jdbc.driver.DmDriver" forced-dbms="DAMENG">
     <url-template name="default" template="jdbc:dm://{host::localhost}?[:{port::5236}][\?&lt;&amp;,schema={database:param},compatibleMode={compatibleMode:param},{:identifier}={:param}&gt;]"/>
     <artifact name="dameng.dm7.jdbc" use="true" rolling="true"/>
     <option name="auto-sync" value="true"/>
     <keep-alive-query>SELECT 1 FROM DUAL</keep-alive-query>
+    <connection-bounds bound-to="schema">
+      <rewrite-parameter name="database" in-url="true"/>
+    </connection-bounds>
   </driver>
 </drivers>
