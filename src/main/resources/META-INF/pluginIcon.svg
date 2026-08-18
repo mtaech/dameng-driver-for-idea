@@ -1,12 +1,10 @@
 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M32.0845 7.94025V4H24.0203V7.9896H16.029V4H7.91553V7.94025H4V36H16.0044V32.0045C16.0058 30.9457 16.4274 29.9308 17.1766 29.1826C17.9258 28.4345 18.9412 28.0143 20 28.0143C21.0588 28.0143 22.0743 28.4345 22.8234 29.1826C23.5726 29.9308 23.9942 30.9457 23.9956 32.0045V36H36V7.94025H32.0845Z"
-          fill="url(#paint0_linear)"/>
-    <defs>
-        <linearGradient id="paint0_linear" x1="2.94192" y1="4.89955" x2="37.7772" y2="39.7345"
-                        gradientUnits="userSpaceOnUse">
-            <stop offset="0.15937" stop-color="#3BEA62"/>
-            <stop offset="0.5404" stop-color="#3C99CC"/>
-            <stop offset="0.93739" stop-color="#6B57FF"/>
-        </linearGradient>
-    </defs>
+<path d="M20 3.75C12.4 3.75 6.25 6.1 6.25 9V31C6.25 33.9 12.4 36.25 20 36.25C27.6 36.25 33.75 33.9 33.75 31V9C33.75 6.1 27.6 3.75 20 3.75Z" fill="#00A651"/>
+<ellipse cx="20" cy="9" rx="13.75" ry="5.25" fill="#3ECB7E"/>
+<path d="M33.75 31C33.75 33.9 27.6 36.25 20 36.25C12.4 36.25 6.25 33.9 6.25 31" stroke="#007A3D"/>
+<path d="M33.75 23.625C33.75 26.525 27.6 28.875 20 28.875C12.4 28.875 6.25 26.525 6.25 23.625" stroke="#007A3D"/>
+<path d="M33.75 16.25C33.75 19.15 27.6 21.5 20 21.5C12.4 21.5 6.25 19.15 6.25 16.25" stroke="#007A3D"/>
+<path d="M33.75 9V31" stroke="#007A3D"/>
+<path d="M6.25 9V31" stroke="#007A3D"/>
+<text x="20" y="25.5" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">DM</text>
 </svg>
