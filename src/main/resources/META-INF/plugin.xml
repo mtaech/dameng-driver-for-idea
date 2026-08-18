@@ -1,0 +1,57 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>me.mteach.dameng-driver-for-idea</id>
+
+    <!-- Public plugin name should be written in Title Case.
+     Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-name -->
+    <name>Dameng Driver</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor url="https://www.dameng.com">me.mteach</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description -->
+    <description><![CDATA[
+        为 <a href="https://www.dameng.com">达梦数据库 (DM)</a> 提供开箱即用的支持，
+        适用于 DataGrip、IntelliJ IDEA Ultimate 及所有包含 Database Tools 插件的 JetBrains IDE。<br>
+        <ul>
+            <li>注册 <code>DM (达梦数据库)</code> JDBC 驱动（<code>dm.jdbc.driver.DmDriver</code>），带专属图标</li>
+            <li>创建数据源时自动从 Maven Central 下载 <code>DmJdbcDriver18</code>，无需手动下载 jar</li>
+            <li>内置 URL 模板 <code>jdbc:dm://主机:5236</code>（默认端口 5236，支持 <code>schema</code>、<code>compatibleMode</code> 参数）</li>
+            <li>支持表、视图、存储过程、函数的 DDL 查看与跳转（基于 DM8 数据字典）</li>
+            <li>修复达梦驱动内省外键导致数据库树加载失败的问题</li>
+        </ul>
+        ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.database</depends>
+
+    <!-- Extensions defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij.database">
+        <dbms id="DAMENG" instance="me.mteach.dameng.DmDbms.DM"/>
+        <driversConfig config="config/extra-drivers.xml"/>
+        <artifactsConfig config="config/extra-artifacts.xml"/>
+        <!--
+          Dameng's JDBC driver can exhaust the remote JDBC bridge process (SIGKILL/OOM)
+          while serving getImportedKeys() during introspection, aborting the whole
+          database-tree load. DmMetadataWrapper skips foreign-key introspection.
+        -->
+        <jdbcMetadataWrapper dbms="DAMENG" implementationClass="me.mteach.dameng.DmMetadataWrapper$Factory"/>
+        <!--
+          The generic JDBC source loader cannot show DDL for views and routines
+          (supportsViewDefinition() == false). DmJdbcSourceLoader reads definitions
+          from DM8's Oracle-compatible data dictionary (SYS.ALL_VIEWS / SYS.ALL_SOURCE).
+        -->
+        <jdbcSourceLoader dbms="DAMENG" implementationClass="me.mteach.dameng.DmJdbcSourceLoader"/>
+        <!--
+          Generic data sources have no definition provider, so Ctrl+Click on a
+          table name in the query console does not open its DDL. DmDefinitionProvider
+          uses DM8's Oracle-compatible DBMS_METADATA.GET_DDL package.
+        -->
+        <definitionProvider dbms="DAMENG" implementationClass="me.mteach.dameng.DmDefinitionProvider"/>
+    </extensions>
+</idea-plugin>

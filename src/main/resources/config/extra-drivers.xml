@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Dameng (DM) database driver registration for the Database Tools plugin
+  (DataGrip / IntelliJ IDEA Ultimate).
+  Loaded via the `com.intellij.database.driversConfig` extension point.
+-->
+<drivers>
+  <driver id="dameng.dm" name="DM (达梦数据库)" icon="/icons/dm.svg" dialect="GenericSQL" driver-class="dm.jdbc.driver.DmDriver" forced-dbms="DAMENG">
+    <url-template name="default" template="jdbc:dm://{host::localhost}?[:{port::5236}][\?&lt;&amp;,schema={database:param},compatibleMode={compatibleMode:param},{:identifier}={:param}&gt;]"/>
+    <artifact name="dameng.dm.jdbc" use="true" rolling="true"/>
+    <option name="auto-sync" value="true"/>
+    <keep-alive-query>SELECT 1 FROM DUAL</keep-alive-query>
+  </driver>
+  <driver id="dameng.dm7" name="DM7 (达梦数据库 7)" icon="/icons/dm.svg" dialect="GenericSQL" driver-class="dm.jdbc.driver.DmDriver" forced-dbms="DAMENG">
+    <url-template name="default" template="jdbc:dm://{host::localhost}?[:{port::5236}][\?&lt;&amp;,schema={database:param},compatibleMode={compatibleMode:param},{:identifier}={:param}&gt;]"/>
+    <artifact name="dameng.dm7.jdbc" use="true" rolling="true"/>
+    <option name="auto-sync" value="true"/>
+    <keep-alive-query>SELECT 1 FROM DUAL</keep-alive-query>
+  </driver>
+</drivers>
